@@ -7,3 +7,5 @@ Please put this call in the /Magento_Review/templates/product/view/list.phtml
 Add style form scss
 
 That's all
+
+<a href="https://ibb.co/gWv8mg9"><img src="https://i.ibb.co/8xzwN8s/reviews.png" alt="reviews" border="0"></a>
