@@ -1,0 +1,61 @@
+<?php $collection = $block->getItemByReviewId($this->getData('key')); ?>
+<div class="reviews__helpful" id="review_<?php echo $this->getData('key'); ?>">
+<?php $cookie_name = 'review_'.$this->getData('key'); ?>
+<?php if(!isset($_COOKIE[$cookie_name])): ?>
+        <?php echo __('Was this review helpful to you?'); ?>
+        <div>
+            <span id="like_review_<?php echo $this->getData('key'); ?>"><?php echo __('yes'); ?></span>
+            <span id="dislike_review_<?php echo $this->getData('key'); ?>"><?php echo __('no'); ?></span>
+        </div>
+        <?php if(sizeof($collection) !== 0): ?>
+            <?php foreach($collection as $item): ?>
+                <label class="helpful__qty">(<?php echo sprintf(__('%s of %s people found this review helpful'),
+                        $item->getReviewLike(),
+                        ($item->getReviewLike() + $item->getReviewDislike())) ?>)</label>
+            <?php endforeach; ?>
+        <?php endif; ?>
+<?php else: ?>
+    <div class=\"reviews__helpful\"><?php echo __('Thank you for voting'); ?></div>
+<?php endif; ?>
+</div>
+<script>
+    require([
+        "jquery",
+        'mage/template',
+        "mage/mage"
+    ], function ($, mageTemplate, alert){
+        var url = '/review/like/index';
+        $('#like_review_<?php echo $this->getData('key'); ?>').click(function(){
+            $(this).parent().parent().css('opacity',.3);
+            $.post(url, {like: true, reviewID: <?php echo $this->getData('key'); ?>}, function(){
+                console.log('post ajax');
+            }).done(function() {
+                setCookie('review_<?php echo $this->getData('key'); ?>',1, 365);
+                $(this).parent().parent().css('opacity',1);
+                $("#review_<?php echo $this->getData('key'); ?>").replaceWith( "<div class=\"reviews__helpful\"><?php echo __('Thank you for voting'); ?></div>" );
+            }.bind(this));
+        });
+        $('#dislike_review_<?php echo $this->getData('key'); ?>').click(function(){
+            $(this).parent().parent().css('opacity',.3);
+            $.post(url, {like: false, reviewID: <?php echo $this->getData('key'); ?>}, function(){
+                console.log('post ajax');
+            }).done(function() {
+                setCookie('review_<?php echo $this->getData('key'); ?>',1, 365);
+                $(this).parent().parent().css('opacity',1);
+                $("#review_<?php echo $this->getData('key'); ?>").replaceWith( "<div class=\"reviews__helpful\"><?php echo __('Thank you for voting'); ?></div>" );
+            }.bind(this));
+        });
+
+        function setCookie(name, val, days) {
+            if (days) {
+                var data = new Date();
+                data.setTime(data.getTime() + (days * 24*60*60*1000));
+                var expires = "; expires="+data.toGMTString();
+            } else {
+                var expires = "";
+            }
+            document.cookie = name + "=" + val + expires + "; path=/";
+        }
+
+    });
+</script>

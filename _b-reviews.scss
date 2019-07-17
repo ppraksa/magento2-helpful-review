@@ -1,0 +1,340 @@
+// fonts (global)
+@include font-face('OpenSans', '../fonts/opensans/OpenSans-Regular', null, null, eot woff ttf svg);
+@include font-face('OpenSans bold', '../fonts/opensans/OpenSans-Bold', null, null, eot woff woff2 ttf);
+@include font-face('OpenSans semibold', '../fonts/opensans/OpenSans-Semibold', null, null, eot woff woff2 ttf);
+@include font-face('Muli', '../fonts/muli/Muli-Regular', null, null, eot ttf svg woff);
+@include font-face('Muli bold', '../fonts/muli/Muli-Bold', null, null, ttf);
+@include font-face('Muli semibold', '../fonts/muli/Muli-SemiBold', null, null, eot svg ttf);
+
+$font-1: 'Muli', 'OpenSans';
+$font-1-bold: 'Muli bold', 'OpenSans bold';
+$font-1-semibold: 'Muli semibold', 'OpenSans semibold';
+$font-2: 'Muli', 'OpenSans'; //'Muli';
+$font-2-bold: 'Muli bold', 'OpenSans bold'; //'Muli bold';
+$font-2-semibold: 'Muli semibold', 'OpenSans semibold'; //'Muli semibold';
+$font-3: 'OpenSans';
+
+$size-0: 1.2rem;
+$size-1: 1.4rem;
+$size-2: 1.6rem;
+$size-3: 2.2rem;
+$size-4: 2.6rem;
+$size-5: 3.2rem;
+
+$color-border: #dadada;
+$color-1: #74a407; // the green
+$color-background-2: #f8f7f6; // light gray color
+$color-text-6: #2d2d2d; // dark text color
+$color-2: #f68200; // orange
+$color-text: #7e7e7e; // common text color
+
+/*body {
+  font-size: 13px; //rem
+}*/
+
+.reviews {
+  &__list {
+    margin-top: 1rem;
+    display: flex;
+  }
+  &__listitem {
+    margin: 0 0 3.5rem 0 !important;
+    padding: 0 0 2rem 0 !important;
+    &:last-of-type {
+      border-bottom: 1px solid $color-border;
+    }
+  }
+  &__nickname {
+    display: inline-block;
+  }
+  &__review {
+    flex: 0 0 20%;
+    padding-right: 2rem;
+    box-sizing: border-box;
+    &__list {
+      display: flex;
+    }
+  }
+  &__left, &__right {
+    flex: 0 0 35%;
+    margin-bottom: 1rem;
+    .review-title {
+      color: $color-1;
+      font-family: $font-2-semibold;
+      font-weight: normal;
+    }
+  }
+  &__left {
+    flex: 0 0 65%;
+  }
+  &__summary {
+    flex: 0 0 100%;
+    display: flex;
+    background: $color-background-2;
+    box-sizing: border-box;
+    padding: .5rem;
+    justify-content: space-around;
+    &__label {
+      margin: 0 1rem;
+      font-family: $font-2;
+      line-height: 1;
+      //top: 0.1rem;
+      //position: relative;
+    }
+  }
+  &__right {
+    display: flex;
+    justify-content: flex-end;
+    & > span {
+      margin: 0 1rem;
+    }
+  }
+  &__content {
+    //flex: 0 0 80%;
+    padding-left: 2rem;
+    box-sizing: border-box;
+    order: 2;
+    .item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .demo li:nth-of-type(n + 6) {
+      display: none;
+    }
+    .demo {
+      position: relative;
+      &:after {
+        width: 100%;
+        content: '';
+        height: 15px;
+        background: #fff;
+        bottom: 0;
+        position: absolute;
+        box-shadow: 0 -16px 100px 50px #fff;
+      }
+    }
+  }
+  &__review {
+    &__content {
+      margin-top: 1rem;
+      line-height: 1.7;
+      text-align: justify;
+    }
+  }
+  &__helpful {
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    flex: 0 0 100%;
+    margin: 1rem 0;
+    & > div > span {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.075);
+      width: 40px;
+      display: inline-block;
+      padding: 1px;
+      border-radius: 4px;
+      text-align: center;
+      margin: 0 0 0 1rem;
+      border: 1px solid $color-border;
+      font-style: normal;
+      text-transform: uppercase;
+      font-family: $font-2-semibold;
+      cursor: pointer;
+      font-size: $size-0;
+      &:hover {
+        background: $color-border;
+        color: #333 !important;
+      }
+      &:first-of-type {
+        color: #327faf;
+      }
+      &:last-of-type {
+        color: $color-text-6;
+        margin-right: 1rem;
+      }
+    }
+  }
+  &__bottom {
+    max-width: 15%;
+  }
+}
+
+.review {
+  &__summary {
+    font-size: 4.5rem;
+    line-height: 1;
+    font-family: $font-2;
+    color: #333;
+    & > label {
+      color: $color-text;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.summary {
+  &__summary {
+    margin: 1rem 0 2rem;
+  }
+  &__progressbar {
+    width: 80px;
+    display: inline-block;
+    background: $color-background-2;
+    height: 6px;
+    border-radius: 8px;
+    margin: 0 1rem;
+    position: relative;
+    & > span {
+      background: $color-2;
+      height: inherit;
+      display: inline-block;
+      position: absolute;
+      border-radius: 8px;
+    }
+  }
+  &__tab {
+    & > div {
+      margin: .25rem 0;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      & > label {
+        width: 40px;
+      }
+    }
+  }
+  &__bottom {
+    margin-top: 2rem;
+  }
+}
+
+@media all and (max-width: 960px) {
+  .reviews {
+    &__review {
+      flex: 0 0 100%;
+      padding-right: 0;
+      display: flex;
+      margin-bottom: 3rem;
+    }
+    &__list {
+      flex-wrap: wrap;
+    }
+    &__content {
+      flex: 0 0 100%;
+      padding-left: 0;
+    }
+    &__left {
+      flex: 100%;
+      justify-content: flex-start;
+    }
+    &__right {
+      flex: 100%;
+      justify-content: flex-start;
+    }
+  }
+  .review {
+    &__summary {
+      flex: 1.5;
+    }
+  }
+  .summary {
+    &__tab {
+      flex: 1.5;
+    }
+    &__bottom {
+      flex: 2;
+      padding-left: 30%;
+      box-sizing: border-box;
+      margin-top: 0;
+    }
+  }
+}
+
+@media all and (max-width: 750px) {
+  .l-responsive {
+    .summary {
+      &__bottom {
+        padding-left: 0;
+      }
+    }
+    .reviews__helpful {
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .helpful__qty {
+      margin-top: 1rem;
+    }
+  }
+}
+
+@media all and (max-width: 650px) {
+  .l-responsive {
+    .reviews__summary__label {
+      margin: 0;
+    }
+  }
+}
+
+@media all and (max-width: 590px) {
+  .l-responsive {
+    .reviews {
+      &__review {
+        flex-wrap: wrap;
+      }
+      &__bottom {
+        max-width: 100%;
+      }
+    }
+    .summary {
+      &__bottom {
+        margin-top: 2rem;
+        padding-left: 0;
+        flex: 0 0 100%;
+        .button {
+          justify-content: center;
+          & > span {
+            margin: 0 .5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 430px) {
+  .l-responsive {
+    .review {
+      &__summary {
+        font-size: 3.5rem;
+      }
+    }
+    .reviews {
+      &__summary {
+        &__label {
+          font-size: 1.1rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+      &__helpful {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 390px) {
+  .l-responsive {
+    .reviews {
+      &__helpful > div {
+        flex: 0 0 100%;
+      }
+      &__helpful > div > span {
+        padding: 5px 10px;
+        margin-top: 1rem;
+      }
+    }
+  }
+}
